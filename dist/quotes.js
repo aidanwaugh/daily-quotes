@@ -1,27 +1,27 @@
 export const quoteLibrary = [
   {
     category: 'life',
+    index: 0,
     quotes: [
-      `Ideal images of perfection, if they are used for inspiration, they can be very beneficial; but if they are used as a measuring device, they become our downfall. - Thomas Sterner`,
-      `Introversion is a preference for environments that are not overstimulating. - Susan Cain`,
-      `Dare to be truthful. - Jordan Peterson`,
+      `0/1 Introversion is a preference for environments that are not overstimulating. - Susan Cain`,
+      `1/1 Dare to be truthful. - Jordan Peterson`,
     ],
   },
   {
     category: 'habit',
+    index: 1,
     quotes: [
-      `It's easy to get on the path of mastery. The real challenge lies in staying on it. - George Leonard`,
-      `Surrender to your teacher and to the demands of your discipline. Surrender your proficiency to reach a higher level of proficiency. - George Leonard`,
-      `Practice is best conceived of as a noun, not as something you do, but as something you have, something you are. - George Leonard`,
-      `The hacker is willing to stay on the plateau indefinitely. - George Leonard`,
-      `The Obsessive finds themselves on a plateau and won't accept it. He doesn't understand the necessity for periods of development on the plateau - George Leonard`,
-      `The Dabbler loves the newness. Thinks they are a connoiseur of novelty but really just an eternal kid. Dabbler/Obsessive/Hacker - George Leonard`,
-      `Practice for the sake of practice itself. Love the plateau. - George Leonard`,
-      `Mastery is available to anyone willing to get on the path and stay on it. - George Leonard`,
+      `0/7 It's easy to get on the path of mastery. The real challenge lies in staying on it. - George Leonard`,
+      `1/7 Surrender to your teacher and to the demands of your discipline. Surrender your proficiency to reach a higher level of proficiency. - George Leonard`,
+      `2/7 Practice is best conceived of as a noun, not as something you do, but as something you have, something you are. - George Leonard`,
+      `3/7 The hacker is willing to stay on the plateau indefinitely. - George Leonard`,
+      `4/7 The Obsessive finds themselves on a plateau and won't accept it. He doesn't understand the necessity for periods of development on the plateau - George Leonard`,
+      `5/7 The Dabbler loves the newness. Thinks they are a connoiseur of novelty but really just an eternal kid. Dabbler/Obsessive/Hacker - George Leonard`,
     ],
   },
   {
     category: 'mindful',
+    index: 2,
     quotes: [
       `It is foolish for us to worry about what other people think of us and particularly foolish for us to seek the approval of people whose values we reject. - Epictetus`,
       `Some things are in our power and some are not. Examples of things not in our power: reputation, power, and the things that are not our own acts. - Epictetus`,
@@ -31,6 +31,7 @@ export const quoteLibrary = [
   },
   {
     category: 'misc',
+    index: 3,
     quotes: [
       `Who can I meet who can positively influence me? Let their glow rub off on you. Befriend the person you think is the biggest, baddest, most successful person in your field. - Darren Hardy`,
       `It doesn't do any good to try to get rid of our so-called negative aspects, because in that process we also get rid of our basic wonderfulness. - Pema Chodron`,
@@ -46,6 +47,7 @@ export const quoteLibrary = [
   },
   {
     category: 'journal',
+    index: 4,
     quotes: [
       `If someone could only see my actions and not hear my words, what would they say are my priorities? - James Clear`,
       `What are you putting off out of fear? - Timothy Ferriss`,
@@ -67,5 +69,25 @@ export const quoteLibrary = [
       `What is the most important long-term goal you'd like to focus your energy on? What immediate “want” is most likely to distract you or tempt you away from this goal? - Kelly McGonigal`,
       `Do you identify more with your impulses and desires, or with your long-term goals and values? - Kelly McGonigal`,
     ],
+  },
+];
+
+function quoteLength(categoryName) {
+  return quoteLibrary.find((section) => section.category == categoryName).quotes.length - 1;
+}
+
+export const quoteIndexTracker = [
+  { category: 'life', currentIndex: 0, categoryLength: quoteLength('life') },
+  { category: 'habit', currentIndex: 0, categoryLength: quoteLength('habit') },
+  {
+    category: 'mindful',
+    currentIndex: 0,
+    categoryLength: quoteLength('mindful'),
+  },
+  { category: 'misc', currentIndex: 0, categoryLength: quoteLength('misc') },
+  {
+    category: 'journal',
+    currentIndex: 0,
+    categoryLength: quoteLength('journal'),
   },
 ];
