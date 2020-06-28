@@ -14,14 +14,49 @@ storedQuotes = JSON.parse(localStorage.getItem(LOCAL_STORAGE_QUOTE_KEY));
 console.log('You have quotes.');
 
 newQuoteBtn.addEventListener('click', () => {
-  console.log('random butn');
-  storedQuotes.push('FOO');
-  saveToLocalStorage();
   renderQuotes();
+  saveToLocalStorage();
 });
 
+function selectRandomQuote() {
+  storedQuotes.forEach((quoteCategory) => {
+    let categoryLength = quoteCategory.quotes.length;
+    let categoryQuoteArray = quoteCategory.quotes;
+    let categoryName = quoteCategory.category;
+
+    if (categoryLength === 0) {
+      console.log(`${categoryName} is empty. fullQuoteCategory BEL`);
+
+      let fullQuoteCategory = quoteLibrary.find(
+        (section) => section.category === categoryName
+      );
+
+      // console.log(fullQuoteCategory.quotes);
+      let fullQuoteArray = fullQuoteCategory.quotes;
+      categoryQuoteArray = fullQuoteArray.slice();
+      console.log('BE FULL ' + categoryName + ' : ' + categoryQuoteArray);
+      saveToLocalStorage();
+      //TODO: set to local storage
+    }
+    let quoteIndex = Math.floor(Math.random() * categoryLength);
+    // console.log(`${quoteCategory.category} ${quoteIndex}/${categoryLength}`);
+    let quoteElement = document.querySelector(
+      `[data-quote-${quoteCategory.category}]`
+    );
+    quoteElement.innerHTML = categoryQuoteArray[quoteIndex];
+    categoryQuoteArray.pop(quoteIndex);
+  });
+}
+
+function resetQuoteCategory(quoteCategory) {
+  quoteCategory = quoteLibrary.category.quotes;
+}
+
 function renderQuotes() {
+  selectRandomQuote();
+  console.group('render() storedQuotes');
   console.log(storedQuotes);
+  console.groupEnd();
 }
 
 function saveToLocalStorage() {
