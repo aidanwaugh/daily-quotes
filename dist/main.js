@@ -61,7 +61,7 @@ function selectRandomQuote() {
 
 function renderQuotes() {
   selectRandomQuote();
-  headerQuoteElement.innerHTML = `${miniQuoteArray[Math.floor(Math.random() * (miniQuoteArray.length - 1))]}`;
+
   console.group('render() storedQuotes');
   console.log(storedIndex);
   console.groupEnd();
@@ -100,5 +100,6 @@ const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', '
   today.getMonth()
 ];
 titleElement.innerHTML = `${month} ${today.getDate()}${nth(today.getDate())}`;
+headerQuoteElement.innerHTML = `${miniQuoteArray[Math.floor(Math.random() * (miniQuoteArray.length - 1))]}`;
 
 renderQuotes();
