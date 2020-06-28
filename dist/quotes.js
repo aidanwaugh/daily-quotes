@@ -91,3 +91,12 @@ export const quoteIndexTracker = [
     categoryLength: quoteLength('journal'),
   },
 ];
+
+export const miniQuoteArray = [
+  'Be 1 % better every day',
+  'You get what you repeat',
+  'Never miss twice',
+  'You are not the exception',
+  'Ego is the enemy',
+  'Courage & Stoicism',
+];

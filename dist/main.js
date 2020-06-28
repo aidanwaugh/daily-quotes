@@ -1,10 +1,13 @@
-import { quoteLibrary, quoteIndexTracker } from './quotes.js';
+import { quoteLibrary, quoteIndexTracker, miniQuoteArray } from './quotes.js';
 
 const LOCAL_STORAGE_QUOTE_KEY = 'local.quotes';
 const LOCAL_STORAGE_INDEX_KEY = 'local.quoteIndex';
 
 const newQuoteBtn = document.querySelector('[data-btn-new-quotes]');
 const allQuoteBtn = document.querySelector('[data-btn-all-quotes]');
+const dateLogoElement = document.querySelector('[data-logo]');
+const headerQuoteElement = document.querySelector('[data-header-quote]');
+const titleElement = document.querySelector('h1');
 
 let storedQuotes = [];
 let storedIndex = [];
@@ -58,6 +61,7 @@ function selectRandomQuote() {
 
 function renderQuotes() {
   selectRandomQuote();
+  headerQuoteElement.innerHTML = `${miniQuoteArray[Math.floor(Math.random() * (miniQuoteArray.length - 1))]}`;
   console.group('render() storedQuotes');
   console.log(storedIndex);
   console.groupEnd();
@@ -66,5 +70,35 @@ function renderQuotes() {
 function saveToLocalStorage() {
   localStorage.setItem(LOCAL_STORAGE_QUOTE_KEY, JSON.stringify(storedQuotes));
 }
+// ----------------- date stuff --------------
+
+const today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //As January is 0.
+var yyyy = today.getFullYear();
+
+if (dd < 10) dd = '0' + dd;
+if (mm < 10) mm = '0' + mm;
+dateLogoElement.innerHTML = `${dd}.${mm}.${yyyy}`;
+
+const nth = function (day) {
+  if (day > 3 && day < 21) return 'th';
+  switch (day % 10) {
+    case 1:
+      return 'st';
+    case 2:
+      return 'nd';
+    case 3:
+      return 'rd';
+    default:
+      return 'th';
+  }
+};
+
+const day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][
+  today.getMonth()
+];
+titleElement.innerHTML = `${month} ${today.getDate()}${nth(today.getDate())}`;
 
 renderQuotes();
