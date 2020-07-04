@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/main.min.css">
+  <link rel="stylesheet" href="main.css">
   <script defer type="module" src="main.js"></script>
   <title>Quotes</title>
 </head>
@@ -14,19 +14,22 @@
   <nav>
     <div class="logo" data-logo></div>
     <div class="nav-main">
-      <a href="https://aidanwaugh.github.io/daily-quotes/dist/quotes.html" class="nav-active">Quotes</a>
+      <a href="https://aidanwaugh.github.io/daily-quotes/dist/quotes.html" class="active">Quotes</a>
       <a href="#">Todo</a>
       <a href="#">To Buy</a>
     </div>
   </nav>
-  <header id="top-anchor">
-    <span data-header-quote></span>
-    <h1>Date</h1>
-    <button data-btn-new-quotes class="btn-main">New Quotes</button>
-  </header>
-  <div id="container">
+  <div class="container">
+    <header id="top-anchor">
+      <div class="header-wrapper">
+
+        <span data-header-quote></span>
+        <h1>Date</h1>
+        <button data-btn-new-quotes class="btn-main">New Quotes</button>
+      </div>
+    </header>
     <section>
-      <button data-btn-all-quotes class="btn-second">View All Quotes</button>
+
       <div class="quote-container">
         <h2>Life</h2>
         <div data-quote-life></div>
@@ -50,6 +53,8 @@
 
     </section>
   </div>
+  <button data-btn-all-quotes class="btn-second">View All Quotes</button>
+
 </body>
 
 </html>

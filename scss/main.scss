@@ -6,16 +6,19 @@
 
 $colors: (
   bg: #f5f5f5,
+  grey-medium: #858687,
+  grey-dark: #4a4a4a,
   black: #302e2e,
-  dark-grey: #4a4a4a,
-  medium-grey: #858687,
+  accent: #2187ff,
 );
 
 $desktop: 768px;
+$nav-height: 7vh;
+$desktop-margin: 9vw;
 
 //media query for mobile first
 @mixin desktop {
-  @media (min-width: #{$desktop}) {
+  @media (max-width: #{$desktop}) {
     @content;
   }
   //insection say @include desktop{ media stuff}
@@ -29,12 +32,12 @@ $body-margin: 10vw;
 
 body {
   font-family: 'Montserrat', sans-serif;
-  margin: 0 $body-margin;
   position: relative;
   top: 0;
   bottom: 0;
   font-weight: 400;
   color: color(black);
+  margin: 0;
 }
 h1 {
   font-size: 4rem;
@@ -55,16 +58,17 @@ button {
 }
 
 nav {
+  padding: 0 $desktop-margin;
   display: flex;
   align-items: center;
-  height: 3rem;
-  top: 0;
-  opacity: 1;
-  z-index: 1;
+  height: $nav-height;
+  background-color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  color: color(grey-dark);
+
   .logo {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: color(dark-grey);
+    text-transform: up;
   }
   .nav-main {
     flex: 1;
@@ -72,108 +76,132 @@ nav {
 
     a {
       margin-left: 2rem;
-      // text-transform: uppercase;
-      color: color(dark-grey);
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-decoration: none;
       padding-bottom: 0.3rem;
+      text-decoration: none;
       letter-spacing: 1px;
+      color: color(grey-dark);
+
+      &.active {
+        border-bottom: 2px solid color(accent);
+        color: color(grey-dark);
+      }
       &:hover {
-        color: color(medium-grey);
+        color: color(grey-medium);
         transition: 0.3s;
       }
     }
-    .nav-active {
-      // color: red;
-      color: color(medium-grey);
-    }
   }
 }
 
-header {
-  margin: 4rem 0 4rem 0; //future 10 for nav3
-  text-align: center;
-  span {
-    font-size: 0.8rem;
-  }
-  .btn-main {
-    color: color(bg);
-    background-color: color(dark-grey);
-    border: 1px solid color(dark-grey);
-    height: 3rem;
-    font-size: 0.9rem;
-    // padding: 0 3rem;
-    text-align: center;
-    outline: none;
-    width: 10rem;
-    transition: all 0.2s ease;
+.container {
+  display: grid;
+  background-color: color(bg);
+  grid-template-columns: 1fr 2fr;
+  padding: 0 $desktop-margin;
+  column-gap: $desktop-margin;
+  position: relative;
+  min-height: 100vh - $nav-height;
+  header {
+    // justify-content: center;
     position: relative;
-    overflow: hidden;
-    z-index: 1;
-    &:before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 100%;
-      background-color: white;
-      transition: all 0.3s;
-      z-index: -1;
-    }
-    &:hover {
-      color: color(dark-grey);
-      &:before {
-        width: 100%;
+    display: flex;
+    justify-content: center;
+    .header-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 15rem;
+      // background-color: pink;
+      // margin-top: 20vh;
+      position: fixed;
+      top: 30vh;
+
+      .btn-main {
+        color: color(bg);
+        background-color: color(grey-dark);
+        border: 1px solid color(grey-dark);
+        height: 3rem;
+        font-size: 0.9rem;
+        // padding: 0 3rem;
+        text-align: center;
+        outline: none;
+        width: 10rem;
+        transition: all 0.2s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        &:before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 0%;
+          background-color: color(bg);
+          transition: all 0.3s;
+          z-index: -1;
+        }
+        &:hover {
+          color: color(grey-dark);
+          &:before {
+            height: 100%;
+          }
+        }
       }
     }
   }
-}
-
-#container {
   section {
-    // background-color: pink;
-    padding: 0 0 2rem 0;
-    background-color: color(bg);
-    position: relative;
-    button {
-      float: right;
-      padding: 2rem 2rem 1rem 1rem;
-      right: $body-margin;
-      background-color: color(bg);
-      border: none;
-      color: color(medium-grey);
-      cursor: pointer;
-
-      &:hover {
-        color: color(dark-grey);
-      }
-    }
+    // background-color: greenyellow;
+    margin: auto 0;
     .quote-container {
-      padding: 0 5rem 3rem 5rem;
-      &:first-of-type {
-        padding-top: 5rem;
-      }
-
+      margin: 4rem 0;
       h2 {
         font-weight: 400;
-        font-size: 1rem;
-        text-transform: uppercase;
+        font-size: 1.3rem;
+        // text-transform: uppercase;
         margin-bottom: 0.2rem;
         letter-spacing: 1px;
         color: color(medium-grey);
       }
       div {
-        margin-top: 0;
-        font-size: 1.2rem;
-        p:first-child {
-          margin-top: 0;
-          // margin: 0.7rem 0;
-        }
-        p {
-          font-size: 1rem;
-        }
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.btn-second {
+  position: absolute;
+  width: 7.8rem;
+  padding: 1rem 0 0.5rem 1rem;
+  bottom: 2rem;
+  right: $desktop-margin;
+  outline: none;
+  border: none;
+  background-color: color(bg);
+  cursor: pointer;
+  color: color(grey-medium);
+  &:hover {
+    color: color(grey-dark);
+  }
+}
+
+@media (max-width: #{$desktop}) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .container {
+    header {
+      .header-wrapper {
+        position: relative;
+        top: 0;
+        margin-top: 3rem;
+        height: 100%;
+      }
+    }
+    section {
+      .quote-container {
+        margin: 2rem 0;
       }
     }
   }
